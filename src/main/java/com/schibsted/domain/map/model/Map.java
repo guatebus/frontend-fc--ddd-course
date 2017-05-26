@@ -1,9 +1,9 @@
 package com.schibsted.domain.map.model;
 
-import com.schibsted.domain.player.model.Player;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Map {
+
+    private final Position UPPER_LEFT_BOUND = new Position(0, 0);
+    private final Position LOWER_RIGHT_BOUND = new Position(7, 7);
 
     public final Position initialPosition = new Position(3, 3);
 
@@ -14,22 +14,26 @@ public class Map {
     }
 
     public Position movePlayerLeft() {
-        playerPosition = playerPosition.left();
+        if(playerPosition.getX() > UPPER_LEFT_BOUND.getX())
+            playerPosition = playerPosition.left();
         return playerPosition;
     }
 
     public Position movePlayerRight() {
-        playerPosition = playerPosition.rigth();
+        if(playerPosition.getX() < LOWER_RIGHT_BOUND.getX())
+            playerPosition = playerPosition.right();
         return playerPosition;
     }
 
     public Position movePlayerUp() {
-        playerPosition = playerPosition.up();
+        if(playerPosition.getY() > UPPER_LEFT_BOUND.getY())
+            playerPosition = playerPosition.up();
         return playerPosition;
     }
 
     public Position movePlayerDown() {
-        playerPosition = playerPosition.down();
+        if(playerPosition.getY() < LOWER_RIGHT_BOUND.getY())
+            playerPosition = playerPosition.down();
         return playerPosition;
     }
 }

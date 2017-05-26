@@ -18,3 +18,13 @@ dependencies {
     testCompile group: 'org.assertj', name: 'assertj-core', version: assertJVersion
     testCompile group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
 }
+
+jar {
+    manifest {
+        // To Run:
+        // ./gradlew jar
+        // java -jar ./build/libs/ddd-course-1.0-SNAPSHOT.jar
+
+        attributes("Main-Class": "com.schibsted.Application")
+    }
+}

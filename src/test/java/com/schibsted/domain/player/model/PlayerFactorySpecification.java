@@ -1,4 +1,4 @@
-package com.schibsted.domain.model;
+package com.schibsted.domain.player.model;
 
 import com.schibsted.domain.player.model.Player;
 import com.schibsted.domain.player.model.PlayerFactory;

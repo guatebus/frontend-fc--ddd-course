@@ -1,6 +1,6 @@
 package com.schibsted;
 
-import com.schibsted.domain.model.PlayerFactory;
+import com.schibsted.domain.player.model.PlayerFactory;
 import com.schibsted.presenter.menu.CreatePlayerPresenter;
 import com.schibsted.view.menu.CreatePlayerView;
 

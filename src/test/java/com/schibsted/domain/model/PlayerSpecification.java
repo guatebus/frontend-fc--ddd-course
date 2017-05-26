@@ -1,6 +1,6 @@
 package com.schibsted.domain.model;
 
-import com.schibsted.domain.model.Player;
+import com.schibsted.domain.player.model.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

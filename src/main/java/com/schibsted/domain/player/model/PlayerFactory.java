@@ -1,4 +1,4 @@
-package com.schibsted.domain.model;
+package com.schibsted.domain.player.model;
 
 public class PlayerFactory {
     public Player create(String playerName) {

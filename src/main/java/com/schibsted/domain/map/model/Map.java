@@ -2,10 +2,14 @@ package com.schibsted.domain.map.model;
 
 public class Map {
 
-    private final Position UPPER_LEFT_BOUND = new Position(0, 0);
-    private final Position LOWER_RIGHT_BOUND = new Position(7, 7);
+    public final Position UPPER_LEFT_BOUND = new Position(0, 0);
+    public final Position LOWER_RIGHT_BOUND = new Position(7, 7);
 
     public final Position initialPosition = new Position(3, 3);
+
+    public Position getPlayerPosition() {
+        return playerPosition;
+    }
 
     private Position playerPosition;
 

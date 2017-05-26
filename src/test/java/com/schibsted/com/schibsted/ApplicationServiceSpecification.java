@@ -17,30 +17,30 @@ public class ApplicationServiceSpecification {
     public void setUp() throws Exception {
         map = Mockito.mock(Map.class);
         player = Mockito.mock(Player.class);
-        service = new ApplicationService();
+        service = new ApplicationService(map);
     }
 
     @Test
     public void player_should_be_able_to_move_left_on_map() throws Exception {
-        service.movePlayerLeft(map);
+        service.movePlayerLeft();
         Mockito.verify(map, Mockito.times(1)).movePlayerLeft();
     }
 
     @Test
     public void player_should_be_able_to_move_right_on_map() throws Exception {
-        service.movePlayerRight(map);
+        service.movePlayerRight();
         Mockito.verify(map, Mockito.times(1)).movePlayerRight();
     }
 
     @Test
     public void player_should_be_able_to_move_up_on_map() throws Exception {
-        service.movePlayerUp(map);
+        service.movePlayerUp();
         Mockito.verify(map, Mockito.times(1)).movePlayerUp();
     }
 
     @Test
     public void player_should_be_able_to_move_down_on_map() throws Exception {
-        service.movePlayerDown(map);
+        service.movePlayerDown();
         Mockito.verify(map, Mockito.times(1)).movePlayerDown();
     }
 }

@@ -4,19 +4,29 @@ import com.schibsted.domain.map.model.Map;
 
 public class ApplicationService {
 
-    public void movePlayerLeft(Map map) {
+    private final Map map;
+
+    public ApplicationService(Map map) {
+        this.map = map;
+    }
+
+    public void movePlayerLeft() {
         map.movePlayerLeft();
     }
 
-    public void movePlayerRight(Map map) {
+    public void movePlayerRight() {
         map.movePlayerRight();
     }
 
-    public void movePlayerUp(Map map) {
+    public void movePlayerUp() {
         map.movePlayerUp();
     }
 
-    public void movePlayerDown(Map map) {
+    public void movePlayerDown() {
         map.movePlayerDown();
+    }
+
+    public Map getMap() {
+        return map;
     }
 }

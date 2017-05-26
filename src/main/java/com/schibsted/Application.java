@@ -1,5 +1,6 @@
 package com.schibsted;
 
+import com.schibsted.domain.model.PlayerFactory;
 import com.schibsted.presenter.menu.CreatePlayerPresenter;
 import com.schibsted.view.menu.CreatePlayerView;
 
@@ -10,7 +11,9 @@ public class Application {
         final Reader reader = new InputStreamReader(System.in);
         final Writer writer = new PrintWriter(System.out);
 
-        final CreatePlayerPresenter createPlayerPresenter = new CreatePlayerPresenter();
+        PlayerFactory playerFactory = new PlayerFactory();
+
+        final CreatePlayerPresenter createPlayerPresenter = new CreatePlayerPresenter(playerFactory);
         final CreatePlayerView createPlayerView = new CreatePlayerView(reader, writer, createPlayerPresenter);
 
         createPlayerView.show();

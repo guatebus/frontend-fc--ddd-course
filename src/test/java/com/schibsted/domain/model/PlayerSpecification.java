@@ -1,3 +1,5 @@
+package com.schibsted.domain.model;
+
 import com.schibsted.domain.model.Player;
 import org.junit.Test;
 

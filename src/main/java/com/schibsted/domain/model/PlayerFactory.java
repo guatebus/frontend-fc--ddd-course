@@ -1,6 +1,7 @@
 package com.schibsted.domain.model;
 
 public class PlayerFactory {
-    public void create(String a_player) {
+    public Player create(String playerName) {
+        return new Player(playerName);
     }
 }

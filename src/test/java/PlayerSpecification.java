@@ -1,5 +1,4 @@
-import com.game.domain.model.Player;
-import org.junit.Assert;
+import com.schibsted.domain.model.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

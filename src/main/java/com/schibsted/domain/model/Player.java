@@ -1,4 +1,4 @@
-package com.game.domain.model;
+package com.schibsted.domain.model;
 
 public class Player {
     private final String name;

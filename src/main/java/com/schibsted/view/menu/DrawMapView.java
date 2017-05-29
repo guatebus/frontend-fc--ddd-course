@@ -22,15 +22,14 @@ public class DrawMapView extends View {
     }
 
     public void onRenderMap(Map map) {
-        for (int x = map.UPPER_LEFT_BOUND.getX() - 1; x <= map.LOWER_RIGHT_BOUND.getX() + 1; x++) {
-            for (int y = map.UPPER_LEFT_BOUND.getY() - 1; y <= map.LOWER_RIGHT_BOUND.getY() + 1; y++)
-                if (isMapBoundary(map,x,y))
+        for (int y = map.UPPER_LEFT_BOUND.getY() - 1; y <= map.LOWER_RIGHT_BOUND.getY() + 1; y++) {
+            for (int x = map.UPPER_LEFT_BOUND.getX() - 1; x <= map.LOWER_RIGHT_BOUND.getX() + 1; x++)
+                if (isMapBoundary(map, x, y))
                     getWriter().print("#");
+                else if (isPlayerPosition(map.getPlayerPosition().getX(), map.getPlayerPosition().getY(), x, y))
+                    getWriter().print("@");
                 else
-                    if (isPlayerPosition(map.getPlayerPosition().getX(), map.getPlayerPosition().getY(), x, y))
-                        getWriter().print("@");
-                    else
-                        getWriter().print(" ");
+                    getWriter().print(" ");
             getWriter().print("\n");
         }
         ;
@@ -51,8 +50,8 @@ public class DrawMapView extends View {
     }
 
     private boolean isMapBoundary(Map map, int x, int y) {
-        return x == map.UPPER_LEFT_BOUND.getX() - 1 || x == map.LOWER_RIGHT_BOUND.getX() + 1  ||
-                ((x != map.UPPER_LEFT_BOUND.getX() - 1 && x != map.LOWER_RIGHT_BOUND.getX() + 1) && (y == map.UPPER_LEFT_BOUND.getY() - 1 ||y == map.LOWER_RIGHT_BOUND.getY() + 1));
+        return x == map.UPPER_LEFT_BOUND.getX() - 1 || x == map.LOWER_RIGHT_BOUND.getX() + 1 ||
+                ((x != map.UPPER_LEFT_BOUND.getX() - 1 && x != map.LOWER_RIGHT_BOUND.getX() + 1) && (y == map.UPPER_LEFT_BOUND.getY() - 1 || y == map.LOWER_RIGHT_BOUND.getY() + 1));
 
     }
 }

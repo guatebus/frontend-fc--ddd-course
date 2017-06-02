@@ -14,9 +14,7 @@ public class ApplicationService {
         map.movePlayerLeft();
     }
 
-    public void movePlayerRight() {
-        map.movePlayerRight();
-    }
+    public void movePlayerRight() { map.movePlayerRight(); }
 
     public void movePlayerUp() {
         map.movePlayerUp();

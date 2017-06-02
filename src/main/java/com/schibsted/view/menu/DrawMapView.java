@@ -46,6 +46,16 @@ public class DrawMapView extends View {
         switch (command) {
             case "l":
                 drawMapPresenter.moveLeft();
+                break;
+            case "r":
+                drawMapPresenter.moveRight();
+                break;
+            case "u":
+                drawMapPresenter.moveUp();
+                break;
+            case "d":
+                drawMapPresenter.moveDown();
+                break;
         }
     }
 

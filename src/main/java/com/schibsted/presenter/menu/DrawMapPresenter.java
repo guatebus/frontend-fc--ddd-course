@@ -16,6 +16,18 @@ public class DrawMapPresenter extends Presenter<DrawMapView> {
         service.movePlayerLeft();
     }
 
+    public void moveRight() {
+        service.movePlayerRight();
+    }
+
+    public void moveUp() {
+        service.movePlayerUp();
+    }
+
+    public void moveDown() {
+        service.movePlayerDown();
+    }
+
     public void onRefreshMap() {
         getView().onRenderMap(service.getMap());
     }

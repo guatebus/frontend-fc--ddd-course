@@ -1,11 +1,12 @@
 package com.schibsted.presenter.menu;
 
-import com.schibsted.domain.player.model.PlayerFactory;
+import com.schibsted.domain.player.model.PlayerService;
 import com.schibsted.view.menu.CreatePlayerView;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class CreatePlayerPresenterSpecification {
 
@@ -13,12 +14,12 @@ public class CreatePlayerPresenterSpecification {
 
     @Test
     public void should_create_a_player() throws Exception {
-        PlayerFactory playerFactory = Mockito.mock(PlayerFactory.class);
-        CreatePlayerPresenter createPlayerPresenter = new CreatePlayerPresenter(playerFactory);
+        PlayerService playerService = Mockito.mock(PlayerService.class);
+        CreatePlayerPresenter createPlayerPresenter = new CreatePlayerPresenter(playerService);
         createPlayerPresenter.bindView(Mockito.mock(CreatePlayerView.class));
 
         createPlayerPresenter.onConfirmPlayerName(A_PLAYER);
 
-        verify(playerFactory, times(1)).create(A_PLAYER);
+        verify(playerService, times(1)).create(A_PLAYER);
     }
 }

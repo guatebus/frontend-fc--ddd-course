@@ -1,16 +1,15 @@
 package com.schibsted.domain.player.model;
 
-import com.schibsted.domain.player.model.Player;
-import com.schibsted.domain.player.model.PlayerFactory;
+import com.schibsted.domain.player.Player;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PlayerFactorySpecification {
+public class PlayerServiceSpecification {
 
     @Test
     public void createPlayer(){
-        PlayerFactory factory = new PlayerFactory();
+        PlayerService factory = new PlayerService();
         Player player = factory.create("A_Player");
         assertEquals(player.getName(),"A_Player");
     }

@@ -1,13 +1,12 @@
 package com.schibsted.domain.map.model;
 
 public class VisitorReference {
-    public final int x, y;
+    public final Position position;
     public final int id;
     public final int type;
 
-    public VisitorReference(int x, int y, int id, int type) {
-        this.x = x;
-        this.y = y;
+    public VisitorReference(Position position, int id, int type) {
+        this.position = position;
         this.id = id;
         this.type = type;
     }

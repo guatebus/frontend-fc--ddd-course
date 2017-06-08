@@ -1,6 +1,6 @@
 package com.schibsted.domain;
 
-import com.schibsted.domain.player.model.Player;
+import com.schibsted.domain.player.Player;
 import com.schibsted.domain.treasure.EmptyTreasure;
 import com.schibsted.domain.treasure.GoldTreasure;
 import com.schibsted.domain.treasure.Treasure;

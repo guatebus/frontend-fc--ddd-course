@@ -1,4 +1,4 @@
-package com.schibsted.domain.player.model;
+package com.schibsted.domain.player;
 
 public class Player {
     private final String name;
@@ -42,5 +42,6 @@ public class Player {
     }
 
     public void addGold(int gold) {
+        this.gold += gold;
     }
 }

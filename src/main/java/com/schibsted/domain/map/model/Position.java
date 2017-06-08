@@ -1,7 +1,5 @@
 package com.schibsted.domain.map.model;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class Position {
 
     private final int x;
@@ -51,5 +49,9 @@ public class Position {
 
     public int getY() {
         return y;
+    }
+
+    public boolean is(int x, int y) {
+        return this.x == x && this.y == y;
     }
 }

@@ -2,7 +2,7 @@ package com.schibsted.com.schibsted;
 
 import com.schibsted.application.ApplicationService;
 import com.schibsted.domain.map.model.Map;
-import com.schibsted.domain.player.model.Player;
+import com.schibsted.domain.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

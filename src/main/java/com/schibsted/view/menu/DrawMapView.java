@@ -2,24 +2,34 @@ package com.schibsted.view.menu;
 
 import com.schibsted.domain.map.model.Map;
 import com.schibsted.domain.map.model.VisitorReference;
+import com.schibsted.domain.player.Player;
 import com.schibsted.presenter.menu.DrawMapPresenter;
 import com.schibsted.view.View;
 
 import java.io.Reader;
 import java.io.Writer;
+import java.util.Optional;
 
 public class DrawMapView extends View {
 
     private final DrawMapPresenter drawMapPresenter;
+    private boolean hasCollision;
+    private Optional<Integer> treasureId;
 
     public DrawMapView(Reader reader, Writer writer, DrawMapPresenter drawMapPresenter) {
         super(reader, writer);
         this.drawMapPresenter = (DrawMapPresenter) drawMapPresenter.bindView(this);
+        this.hasCollision = false;
     }
 
     @Override
     public void onRender() {
         this.drawMapPresenter.onRefreshMap();
+    }
+
+    public void onRenderPlayer(Player player) {
+        getWriter().printf("%s - %dG\n", player.getName(), player.getGold());
+        getWriter().printf("Level %d - %dHP\n", player.getLevel(), player.getHitPoints());
     }
 
     public void onRenderMap(Map map) {
@@ -35,13 +45,15 @@ public class DrawMapView extends View {
             getWriter().print("\n");
         }
 
-        getWriter().print("Please move player: (l)eft, (r)ight, (u)p, (d)own.");
-        getWriter().flush();
+        getWriter().println("Please move player: (l)eft, (r)ight, (u)p, (d)own.");
+        if (hasCollision) {
+            getWriter().println("(O)pen treasure.");
+        }
     }
 
     private void printMapTile(Map map, int x, int y) {
         final VisitorReference visitor = map.visitors.stream()
-                .filter(ref -> ref.x == x && ref.y == y)
+                .filter(ref -> ref.position.is(x, y))
                 .findFirst().orElse(null);
 
         if (visitor == null) {
@@ -59,19 +71,13 @@ public class DrawMapView extends View {
 
     @Override
     public void onCommand(String command) {
-        switch (command) {
-            case "l":
-                drawMapPresenter.moveLeft();
-                break;
-            case "r":
-                drawMapPresenter.moveRight();
-                break;
-            case "u":
-                drawMapPresenter.moveUp();
-                break;
-            case "d":
-                drawMapPresenter.moveDown();
-                break;
+        if (command.equals("o") && hasCollision) {
+            drawMapPresenter.onOpenTreasure(treasureId.get());
+        } else {
+            hasCollision = false;
+            treasureId = Optional.empty();
+
+            drawMapPresenter.move(command);
         }
     }
 
@@ -79,5 +85,10 @@ public class DrawMapView extends View {
         return x == map.UPPER_LEFT_BOUND.getX() - 1 || x == map.LOWER_RIGHT_BOUND.getX() + 1 ||
                 ((x != map.UPPER_LEFT_BOUND.getX() - 1 && x != map.LOWER_RIGHT_BOUND.getX() + 1) && (y == map.UPPER_LEFT_BOUND.getY() - 1 || y == map.LOWER_RIGHT_BOUND.getY() + 1));
 
+    }
+
+    public void onTreasureChestFound(int treasureId) {
+        this.treasureId = Optional.of(treasureId);
+        this.hasCollision = true;
     }
 }

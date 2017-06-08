@@ -1,9 +1,9 @@
 package com.schibsted.domain.player.model;
 
-import com.schibsted.domain.player.model.Player;
+import com.schibsted.domain.player.Player;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PlayerSpecification {
 

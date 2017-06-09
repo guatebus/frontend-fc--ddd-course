@@ -2,11 +2,9 @@ package com.schibsted;
 
 import com.schibsted.application.ApplicationService;
 import com.schibsted.domain.map.model.Map;
+import com.schibsted.domain.map.model.Visitor;
 import com.schibsted.domain.player.PlayerService;
-import com.schibsted.domain.treasure.GoldTreasure;
-import com.schibsted.domain.treasure.Treasure;
-import com.schibsted.domain.treasure.TreasureRepository;
-import com.schibsted.domain.treasure.TreasureService;
+import com.schibsted.domain.treasure.*;
 import com.schibsted.infrastructure.treasure.InMemoryTreasureRepository;
 import com.schibsted.presenter.menu.CreatePlayerPresenter;
 import com.schibsted.view.menu.CreatePlayerView;
@@ -21,8 +19,7 @@ public class Application {
         final Writer writer = new PrintWriter(System.out);
         final Treasure treasure1 = new GoldTreasure(0, 250);
         final Treasure treasure2 = new GoldTreasure(1, 500);
-
-        MAP.addVisitor(treasure1, 4, 6);
+        final Treasure treasure3 = new ExperienceTreasure(2, 500);
 
         final PlayerService playerService = new PlayerService();
         final TreasureRepository treasureRepository = new InMemoryTreasureRepository();
@@ -33,6 +30,8 @@ public class Application {
         MAP.addVisitor(treasure2, 2, 3);
         treasureRepository.save(treasure2);
 
+        MAP.addVisitor(treasure3, 1, 1);
+        treasureRepository.save(treasure3);
 
         final TreasureService treasureService = new TreasureService(treasureRepository);
         final ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP);

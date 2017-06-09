@@ -20,7 +20,7 @@ public class TreasureServiceSpecification {
     }
 
     @Test
-    public void shouldManageTreasureRepository() throws Exception {
+    public void should_open_gold_treasure() throws Exception {
         Treasure treasure = new GoldTreasure(0,100);
         Treasure expectedTreasure = new EmptyTreasure(0);
         Player player = Mockito.mock(Player.class);
@@ -31,10 +31,26 @@ public class TreasureServiceSpecification {
         Treasure openedTreasure = service.openTreasure(0, player);
 
         Assert.assertEquals(expectedTreasure, openedTreasure);
+
         verify(repository).save(expectedTreasure);
+        verify(player).addGold(100);
     }
 
     @Test
-    public void should() throws Exception {
+    public void should_open_experience_treasure() throws Exception {
+        Treasure treasure = new ExperienceTreasure(0,100);
+        Treasure expectedTreasure = new EmptyTreasure(0);
+        Player player = Mockito.mock(Player.class);
+        when(repository.get(0)).thenReturn(treasure);
+        when(repository.save(expectedTreasure)).thenReturn(expectedTreasure);
+        TreasureService service = new TreasureService(repository);
+
+        Treasure openedTreasure = service.openTreasure(0, player);
+
+        Assert.assertEquals(expectedTreasure, openedTreasure);
+
+        verify(repository).save(expectedTreasure);
+        verify(player).addExperience(100);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.schibsted.infrastructure.treasure;
 
 import com.schibsted.domain.treasure.EmptyTreasure;
+import com.schibsted.domain.treasure.ExperienceTreasure;
 import com.schibsted.domain.treasure.Treasure;
 import com.schibsted.domain.treasure.TreasureRepository;
 import org.junit.Assert;
@@ -16,7 +17,7 @@ public class InMemoryTreasureRepositorySpecification {
     }
 
     @Test
-    public void ShouldGetTreasure() throws Exception {
+    public void ShouldGetEmptyTreasure() throws Exception {
         Treasure expectedTreasure = new EmptyTreasure(0);
         treasureRepository.save(expectedTreasure);
 
@@ -24,4 +25,15 @@ public class InMemoryTreasureRepositorySpecification {
 
         Assert.assertEquals(expectedTreasure, treasure);
     }
+
+    @Test
+    public void ShouldGetExperienceTreasure() throws Exception {
+        Treasure expectedTreasure = new ExperienceTreasure(0, 100);
+        treasureRepository.save(expectedTreasure);
+
+        Treasure treasure = treasureRepository.get(0);
+
+        Assert.assertEquals(expectedTreasure, treasure);
+    }
+
 }

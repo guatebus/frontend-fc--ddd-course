@@ -44,4 +44,36 @@ public class Player {
     public void addGold(int gold) {
         this.gold += gold;
     }
+
+    public void addExperience(int experience) {
+        this.experience += experience;
+        double experienceNeededToChenge = experienceNeededToChangeToUpperLevel(level + 1);
+        while (experience > experienceNeededToChenge) {
+            level++;
+            computeLevel(level);
+            experienceNeededToChenge = experienceNeededToChangeToUpperLevel(level + 1);
+        }
+    }
+
+    private void computeLevel(int level) {
+        updateAttackPoints(level);
+        updateDefensePoints(level);
+        updateHitPoints(level);
+    }
+
+    private void updateHitPoints(int level) {
+        hitPoints = 10 + ((level -1) * 2);
+    }
+
+    private void updateDefensePoints(int level) {
+        defensePoints = 2 + (int) Math.floor(level / 2);
+    }
+
+    private void updateAttackPoints(int level) {
+        attackPoints = 2 + (int) Math.floor(level / 3);
+    }
+
+    private double experienceNeededToChangeToUpperLevel(int level) {
+        return Math.abs((50f / 3f) * (Math.pow(level , 3) - (Math.pow(level , 2) * 6) + (17 * level) - 12));
+    }
 }

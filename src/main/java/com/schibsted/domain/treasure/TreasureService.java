@@ -3,14 +3,15 @@ package com.schibsted.domain.treasure;
 import com.schibsted.domain.player.Player;
 
 public class TreasureService {
-    private Treasure treasure;
+    private final TreasureRepository repository;
 
-    public TreasureService(Treasure treasure) {
-        this.treasure = treasure;
+    public TreasureService(TreasureRepository repository) {
+        this.repository = repository;
     }
 
-    public Treasure openTreasure(Player player) {
+    public Treasure openTreasure(int id, Player player) {
+        Treasure treasure = repository.get(id);
         treasure = treasure.open(player);
-        return treasure;
+        return repository.save(treasure);
     }
 }

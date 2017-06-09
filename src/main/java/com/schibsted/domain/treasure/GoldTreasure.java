@@ -23,4 +23,26 @@ public class GoldTreasure implements Treasure {
     public VisitorReference getReference(Position position) {
         return new VisitorReference(position, id, 0);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GoldTreasure)) return false;
+
+        GoldTreasure that = (GoldTreasure) o;
+
+        if (id != that.id) return false;
+        return gold == that.gold;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + gold;
+        return result;
+    }
 }

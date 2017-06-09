@@ -20,4 +20,23 @@ public class EmptyTreasure implements Treasure {
     public VisitorReference getReference(Position position) {
         return new VisitorReference(position, id, 1);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EmptyTreasure)) return false;
+
+        EmptyTreasure that = (EmptyTreasure) o;
+
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    public int getId() {
+        return id;
+    }
 }

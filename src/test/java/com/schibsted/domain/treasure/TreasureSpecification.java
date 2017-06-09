@@ -1,4 +1,4 @@
-package com.schibsted.domain;
+package com.schibsted.domain.treasure;
 
 import com.schibsted.domain.player.Player;
 import com.schibsted.domain.treasure.EmptyTreasure;

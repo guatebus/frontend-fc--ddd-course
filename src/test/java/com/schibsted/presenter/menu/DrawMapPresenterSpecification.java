@@ -22,27 +22,25 @@ public class DrawMapPresenterSpecification {
 
     @Test
     public void should_move_a_player_to_the_left() throws Exception {
-        drawMapPresenter.moveLeft();
+        drawMapPresenter.move("l");
         Mockito.verify(service, Mockito.times(1)).movePlayerLeft();
     }
 
     @Test
     public void should_move_a_player_to_the_right() throws Exception {
-        drawMapPresenter.moveRight();
+        drawMapPresenter.move("r");
         Mockito.verify(service, Mockito.times(1)).movePlayerRight();
     }
 
     @Test
     public void should_move_a_player_up() throws Exception {
-        drawMapPresenter.moveUp();
+        drawMapPresenter.move("u");
         Mockito.verify(service, Mockito.times(1)).movePlayerUp();
     }
 
     @Test
     public void should_move_a_player_down() throws Exception {
-        drawMapPresenter.moveDown();
+        drawMapPresenter.move("d");
         Mockito.verify(service, Mockito.times(1)).movePlayerDown();
     }
-
-
 }

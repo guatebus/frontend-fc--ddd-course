@@ -17,13 +17,13 @@ public class Application {
     public static void main(String[] args) throws IOException {
         final Reader reader = new InputStreamReader(System.in);
         final Writer writer = new PrintWriter(System.out);
-        Treasure treasure = new GoldTreasure(0, 250);
+        final Treasure treasure = new GoldTreasure(0, 250);
 
         MAP.addVisitor(treasure, 4, 6);
 
-        PlayerService playerService = new PlayerService();
-        TreasureService treasureService = new TreasureService(treasure);
-        ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP);
+        final PlayerService playerService = new PlayerService();
+        final TreasureService treasureService = new TreasureService(treasure);
+        final ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP);
 
         final CreatePlayerPresenter createPlayerPresenter = new CreatePlayerPresenter(playerService);
         final CreatePlayerView createPlayerView = new CreatePlayerView(reader, writer, createPlayerPresenter, applicationService);

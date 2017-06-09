@@ -14,7 +14,7 @@ public class TreasureSpecification {
     @Test
     public void should_add_gold_to_the_opener() throws Exception {
         Player opener = mock(Player.class);
-        Treasure treasure = new GoldTreasure(GOLD_QT);
+        Treasure treasure = new GoldTreasure(0, GOLD_QT);
         treasure.open(opener);
 
         verify(opener).addGold(GOLD_QT);
@@ -23,7 +23,7 @@ public class TreasureSpecification {
     @Test
     public void should_not_open_when_already_opened() throws Exception {
         Player opener = mock(Player.class);
-        Treasure treasure = new EmptyTreasure();
+        Treasure treasure = new EmptyTreasure(0);
         treasure.open(opener);
 
         verifyZeroInteractions(opener);

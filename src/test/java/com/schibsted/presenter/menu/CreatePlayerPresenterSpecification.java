@@ -1,6 +1,6 @@
 package com.schibsted.presenter.menu;
 
-import com.schibsted.domain.player.model.PlayerService;
+import com.schibsted.domain.player.PlayerService;
 import com.schibsted.view.menu.CreatePlayerView;
 import org.junit.Test;
 import org.mockito.Mockito;

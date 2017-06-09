@@ -3,6 +3,9 @@ package com.schibsted.com.schibsted;
 import com.schibsted.application.ApplicationService;
 import com.schibsted.domain.map.model.Map;
 import com.schibsted.domain.player.Player;
+import com.schibsted.domain.player.PlayerService;
+import com.schibsted.domain.treasure.EmptyTreasure;
+import com.schibsted.domain.treasure.TreasureService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -17,7 +20,7 @@ public class ApplicationServiceSpecification {
     public void setUp() throws Exception {
         map = Mockito.mock(Map.class);
         player = Mockito.mock(Player.class);
-        service = new ApplicationService(map);
+        service = new ApplicationService(new PlayerService(), new TreasureService(new EmptyTreasure(0)), map);
     }
 
     @Test

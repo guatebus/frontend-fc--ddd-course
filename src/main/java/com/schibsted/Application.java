@@ -23,6 +23,7 @@ public class Application {
 
         final PlayerService playerService = new PlayerService();
         final TreasureRepository treasureRepository = new InMemoryTreasureRepository();
+        final RollDice rollDice = new SystemRollDice();
 
         MAP.addVisitor(treasure1, 4, 6);
         treasureRepository.save(treasure1);
@@ -33,7 +34,7 @@ public class Application {
         MAP.addVisitor(treasure3, 1, 1);
         treasureRepository.save(treasure3);
 
-        final TreasureService treasureService = new TreasureService(treasureRepository);
+        final TreasureService treasureService = new TreasureService(rollDice, treasureRepository);
         final ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP);
 
         final CreatePlayerPresenter createPlayerPresenter = new CreatePlayerPresenter(playerService);

@@ -5,6 +5,7 @@ import com.schibsted.domain.map.model.VisitorReference;
 import com.schibsted.domain.player.Player;
 
 public class GoldTreasure implements Treasure {
+
     private final int id;
     private final int gold;
 
@@ -14,8 +15,14 @@ public class GoldTreasure implements Treasure {
     }
 
     @Override
-    public EmptyTreasure open(Player opener) {
-        opener.addGold(gold);
+    public Treasure open(int dice, Player opener) {
+        if (dice > 10) {
+            opener.addGold(gold);
+        }
+
+        if (dice > 80) {
+            return this;
+        }
         return new EmptyTreasure(id);
     }
 

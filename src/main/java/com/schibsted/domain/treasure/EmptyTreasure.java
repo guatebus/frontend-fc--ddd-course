@@ -5,6 +5,7 @@ import com.schibsted.domain.map.model.VisitorReference;
 import com.schibsted.domain.player.Player;
 
 public class EmptyTreasure implements Treasure {
+
     private final int id;
 
     public EmptyTreasure(int id) {
@@ -12,7 +13,7 @@ public class EmptyTreasure implements Treasure {
     }
 
     @Override
-    public EmptyTreasure open(Player opener) {
+    public Treasure open(int dice, Player opener) {
         return this;
     }
 

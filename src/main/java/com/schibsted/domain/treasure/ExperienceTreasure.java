@@ -20,8 +20,13 @@ public class ExperienceTreasure implements Treasure {
     }
 
     @Override
-    public EmptyTreasure open(Player opener) {
-        opener.addExperience(experience);
+    public Treasure open(int dice, Player opener) {
+        if (dice > 10) {
+            opener.addExperience(experience);
+        }
+        if (dice > 80) {
+            return this;
+        }
         return new EmptyTreasure(id);
     }
 

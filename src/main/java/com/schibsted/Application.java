@@ -36,7 +36,7 @@ public class Application {
         MAP.addVisitor(treasure3, 1, 1);
         treasureRepository.save(treasure3);
 
-        MAP.addVisitor(shop1, 5, 7);
+        MAP.addVisitor(shop1, 3, 4);
 
         final TreasureService treasureService = new TreasureService(rollDice, treasureRepository);
         final ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP, shop1);

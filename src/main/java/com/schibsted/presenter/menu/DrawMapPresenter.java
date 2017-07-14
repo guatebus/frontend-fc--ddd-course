@@ -2,6 +2,7 @@ package com.schibsted.presenter.menu;
 
 import com.schibsted.application.ApplicationService;
 import com.schibsted.domain.map.exceptions.CollisionFoundException;
+import com.schibsted.domain.map.model.Visitor;
 import com.schibsted.presenter.Presenter;
 import com.schibsted.view.menu.DrawMapView;
 
@@ -30,8 +31,10 @@ public class DrawMapPresenter extends Presenter<DrawMapView> {
                     break;
             }
         } catch (CollisionFoundException e) {
-            if (e.reference.type == 0) {
+            if (e.reference.type == Visitor.Type.CLOSED_TREASURE.ordinal()) {
                 getView().onTreasureChestFound(e.reference.id);
+            } else if (e.reference.type == Visitor.Type.SHOP.ordinal()) {
+                getView().onShopFound(e.reference.id);
             }
         }
     }

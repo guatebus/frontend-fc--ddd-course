@@ -14,13 +14,14 @@ import java.util.Optional;
 public class DrawMapView extends View {
 
     private final DrawMapPresenter drawMapPresenter;
-    private boolean hasCollision;
+    private enum CollisionType {NONE, TREASURE, SHOP};
+    private CollisionType currentCollision;
     private Optional<Integer> treasureId;
 
     public DrawMapView(Reader reader, Writer writer, DrawMapPresenter drawMapPresenter) {
         super(reader, writer);
         this.drawMapPresenter = (DrawMapPresenter) drawMapPresenter.bindView(this);
-        this.hasCollision = false;
+        currentCollision = CollisionType.NONE;
     }
 
     @Override
@@ -47,8 +48,10 @@ public class DrawMapView extends View {
         }
 
         getWriter().println("Please move player: (l)eft, (r)ight, (u)p, (d)own.");
-        if (hasCollision) {
+        if (currentCollision == CollisionType.TREASURE) {
             getWriter().println("(O)pen treasure.");
+        } else if (currentCollision == CollisionType.SHOP) {
+            getWriter().println("(B)uy items.");
         }
     }
 
@@ -74,10 +77,10 @@ public class DrawMapView extends View {
 
     @Override
     public void onCommand(String command) {
-        if (command.equals("o") && hasCollision) {
+        if (command.equals("o") && currentCollision == CollisionType.TREASURE) {
             drawMapPresenter.onOpenTreasure(treasureId.get());
         } else {
-            hasCollision = false;
+            currentCollision = CollisionType.NONE;
             treasureId = Optional.empty();
 
             drawMapPresenter.move(command);
@@ -92,6 +95,10 @@ public class DrawMapView extends View {
 
     public void onTreasureChestFound(int treasureId) {
         this.treasureId = Optional.of(treasureId);
-        this.hasCollision = true;
+        currentCollision = CollisionType.TREASURE;
+    }
+
+    public void onShopFound(int id) {
+        currentCollision = CollisionType.SHOP;
     }
 }

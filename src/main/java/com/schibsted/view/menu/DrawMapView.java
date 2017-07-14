@@ -1,11 +1,14 @@
 package com.schibsted.view.menu;
 
+import com.schibsted.application.ApplicationService;
 import com.schibsted.domain.map.model.Map;
 import com.schibsted.domain.map.model.Visitor;
 import com.schibsted.domain.map.model.VisitorReference;
 import com.schibsted.domain.player.Player;
 import com.schibsted.domain.shop.Shop;
+import com.schibsted.presenter.Presenter;
 import com.schibsted.presenter.menu.DrawMapPresenter;
+import com.schibsted.presenter.menu.ShopPresenter;
 import com.schibsted.view.View;
 
 import java.io.Reader;
@@ -84,7 +87,7 @@ public class DrawMapView extends View {
             drawMapPresenter.onOpenTreasure(treasureId.get());
             currentCollision = CollisionType.NONE;
         } else if (command.equals("b") && currentCollision == CollisionType.SHOP) {
-            drawMapPresenter.onBuyFromShop(currentShopId.get());
+            drawMapPresenter.onShopAtShop(currentShopId.get());
         } else {
             currentCollision = CollisionType.NONE;
             treasureId = Optional.empty();
@@ -108,7 +111,7 @@ public class DrawMapView extends View {
         currentCollision = CollisionType.SHOP;
     }
 
-    public void navigateToShop(Shop shop) {
-        navigateTo(new ShopView(getReader(), getWriter(), shop));
+    public void navigateToShop(Shop shop, ApplicationService service) {
+        navigateTo(new ShopView(getReader(), getWriter(), shop, new ShopPresenter(service)));
     }
 }

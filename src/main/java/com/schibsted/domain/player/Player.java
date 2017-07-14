@@ -1,5 +1,8 @@
 package com.schibsted.domain.player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private final String name;
     private int hitPoints = 10;
@@ -8,6 +11,7 @@ public class Player {
     private int level = 1;
     private int experience = 0;
     private int gold = 0;
+    private List<Integer> weaponsPurchased = new ArrayList<>();
 
     public Player(String name) {
         this.name = name;
@@ -43,6 +47,22 @@ public class Player {
 
     public void addGold(int gold) {
         this.gold += gold;
+    }
+
+    public void subtractGold(int gold) {
+        this.gold -= gold;
+    }
+
+    public void addAttackPoints(int attackPoints) {
+        this.attackPoints += attackPoints;
+    }
+
+    public List<Integer> getWeapons() {
+        return weaponsPurchased;
+    }
+
+    public void addWeapon(int id) {
+        weaponsPurchased.add(id);
     }
 
     public void addExperience(int experience) {

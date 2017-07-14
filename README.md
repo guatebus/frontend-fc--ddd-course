@@ -101,3 +101,13 @@
 *** A player that buys the Katana, pays 1000G and wins 5 atk points.
 ** After buying, the bought item should be marked in the shop list with an *.
 ```
+
+## User story 11
+```
+* As a User I want to buy an item from the shop with my player.
+** I can only buy an item if the player has the necessary gold for the transaction
+** After buying the object, pays the price in gold.
+** The player adds the modifier of the weapon to it's stats.
+*** A player that buys the Katana, pays 1000G and wins 5 atk points.
+** After buying, the bought item should be marked in the shop list with an *.
+```

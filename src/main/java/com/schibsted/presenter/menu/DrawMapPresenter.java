@@ -49,8 +49,8 @@ public class DrawMapPresenter extends Presenter<DrawMapView> {
         service.onOpenTreasure(treasureId);
     }
 
-    public void onBuyFromShop(int shopId) {
-        Shop shop = service.onBuyFromShop(shopId);
-        getView().navigateToShop(shop);
+    public void onShopAtShop(int shopId) {
+        Shop shop = service.getShop(shopId);
+        getView().navigateToShop(shop, service);
     }
 }

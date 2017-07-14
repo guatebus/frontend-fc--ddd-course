@@ -5,6 +5,7 @@ import com.schibsted.domain.map.model.Map;
 import com.schibsted.domain.map.model.Visitor;
 import com.schibsted.domain.player.PlayerService;
 import com.schibsted.domain.shop.Shop;
+import com.schibsted.domain.shop.ShopService;
 import com.schibsted.domain.treasure.*;
 import com.schibsted.infrastructure.treasure.InMemoryTreasureRepository;
 import com.schibsted.presenter.menu.CreatePlayerPresenter;
@@ -39,7 +40,7 @@ public class Application {
         MAP.addVisitor(shop1, 3, 4);
 
         final TreasureService treasureService = new TreasureService(rollDice, treasureRepository);
-        final ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP, shop1);
+        final ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP, new ShopService(shop1));
 
         final CreatePlayerPresenter createPlayerPresenter = new CreatePlayerPresenter(playerService);
         final CreatePlayerView createPlayerView = new CreatePlayerView(reader, writer, createPlayerPresenter, applicationService);

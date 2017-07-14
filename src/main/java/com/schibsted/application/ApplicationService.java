@@ -4,6 +4,7 @@ import com.schibsted.domain.map.model.Map;
 import com.schibsted.domain.player.Player;
 import com.schibsted.domain.player.PlayerService;
 import com.schibsted.domain.shop.Shop;
+import com.schibsted.domain.shop.ShopService;
 import com.schibsted.domain.treasure.Treasure;
 import com.schibsted.domain.treasure.TreasureService;
 
@@ -11,13 +12,13 @@ public class ApplicationService {
     private final PlayerService playerService;
     private final TreasureService treasureService;
     private final Map map;
-    private final Shop shop;
+    private final ShopService shopService;
 
-    public ApplicationService(PlayerService playerService, TreasureService treasureService, Map map, Shop shop) {
+    public ApplicationService(PlayerService playerService, TreasureService treasureService, Map map, ShopService shopService) {
         this.playerService = playerService;
         this.treasureService = treasureService;
         this.map = map;
-        this.shop = shop;
+        this.shopService = shopService;
     }
 
     public void movePlayerLeft() {
@@ -49,7 +50,11 @@ public class ApplicationService {
         return map;
     }
 
-    public Shop onBuyFromShop(int shopId) {
-        return shop;
+    public Shop getShop(int shopId) {
+        return shopService.getShop();
+    }
+
+    public Player onPurchase(String command) {
+        return shopService.purchase(playerService.getPlayer(), command);
     }
 }

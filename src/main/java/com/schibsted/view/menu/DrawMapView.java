@@ -16,10 +16,6 @@ public class DrawMapView extends View {
 
     private final DrawMapPresenter drawMapPresenter;
 
-    public void navigateToShop(Shop shop) {
-        navigateTo(new ShopView(getReader(), getWriter(), shop));
-    }
-
     private enum CollisionType {NONE, TREASURE, SHOP};
     private CollisionType currentCollision;
     private Optional<Integer> treasureId;
@@ -110,5 +106,9 @@ public class DrawMapView extends View {
     public void onShopFound(int shopId) {
         currentShopId = Optional.of(shopId);
         currentCollision = CollisionType.SHOP;
+    }
+
+    public void navigateToShop(Shop shop) {
+        navigateTo(new ShopView(getReader(), getWriter(), shop));
     }
 }

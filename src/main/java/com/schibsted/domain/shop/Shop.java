@@ -29,7 +29,7 @@ public class Shop implements Visitor {
         return new VisitorReference(position, id, Type.SHOP.ordinal());
     }
 
-    public String getShoppingList() {
+    public String showItemList() {
         return items.stream().map(it -> it.toString()).reduce("", String::concat);
     }
 }

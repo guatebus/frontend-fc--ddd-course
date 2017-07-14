@@ -70,7 +70,7 @@ public class DrawMapView extends View {
         } else if (visitor.type == Visitor.Type.OPEN_TREASURE.ordinal()) {
             getWriter().print("#");
         } else if (visitor.type == Visitor.Type.SHOP.ordinal()) {
-            getWriter().print("H");
+            getWriter().print("S");
         }
     }
 

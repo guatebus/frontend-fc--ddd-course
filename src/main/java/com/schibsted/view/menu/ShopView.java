@@ -16,7 +16,7 @@ public class ShopView extends View {
 
     @Override
     public void onRender() {
-        getWriter().println(shop.getShoppingList());
+        getWriter().println(shop.showItemList());
     }
 
     @Override

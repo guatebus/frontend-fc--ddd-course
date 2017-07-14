@@ -79,6 +79,7 @@ public class DrawMapView extends View {
     public void onCommand(String command) {
         if (command.equals("o") && currentCollision == CollisionType.TREASURE) {
             drawMapPresenter.onOpenTreasure(treasureId.get());
+            currentCollision = CollisionType.NONE;
         } else {
             currentCollision = CollisionType.NONE;
             treasureId = Optional.empty();

@@ -7,7 +7,7 @@ public class ExperienceTreasure extends Treasure {
     private final int experience;
 
     public ExperienceTreasure(int id, int experience) {
-        super(id, Type.ZERO);
+        super(id, Type.CLOSED_TREASURE);
         this.experience = experience;
     }
 

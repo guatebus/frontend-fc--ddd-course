@@ -1,6 +1,7 @@
 package com.schibsted.view.menu;
 
 import com.schibsted.domain.map.model.Map;
+import com.schibsted.domain.map.model.Visitor;
 import com.schibsted.domain.map.model.VisitorReference;
 import com.schibsted.domain.player.Player;
 import com.schibsted.presenter.menu.DrawMapPresenter;
@@ -58,10 +59,12 @@ public class DrawMapView extends View {
 
         if (visitor == null) {
             getWriter().print(" ");
-        } else if (visitor.type == 0) {
+        } else if (visitor.type == Visitor.Type.CLOSED_TREASURE.ordinal()) {
             getWriter().print("$");
-        } else if (visitor.type == 1) {
+        } else if (visitor.type == Visitor.Type.OPEN_TREASURE.ordinal()) {
             getWriter().print("#");
+        } else if (visitor.type == Visitor.Type.SHOP.ordinal()) {
+            getWriter().print("H");
         }
     }
 

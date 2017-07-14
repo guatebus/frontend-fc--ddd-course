@@ -7,7 +7,7 @@ public class GoldTreasure extends Treasure {
     private final int gold;
 
     public GoldTreasure(int id, int gold) {
-        super(id, Type.ZERO);
+        super(id, Type.CLOSED_TREASURE);
         this.gold = gold;
     }
 

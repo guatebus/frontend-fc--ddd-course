@@ -7,8 +7,6 @@ import com.schibsted.domain.player.Player;
 
 public abstract class Treasure implements Visitor {
 
-    public enum Type {ZERO, ONE}
-
     final int id;
     private final Type type;
 

@@ -84,7 +84,7 @@
 * As a User I want to see a list with the items in the shop
 ** The item list will have the following format:
 *** $IDX) $NAME - +$MODIFIER atk. - ${PRICE}G
-** The show will contain the following items:
+** The list shown will contain the following items:
 *** Short Sword, +1 atk, 100G
 *** Sabre, +3 atk, 500G
 *** Long Sword, +6 atk, 1200G

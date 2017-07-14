@@ -4,6 +4,7 @@ import com.schibsted.domain.map.model.Map;
 import com.schibsted.domain.map.model.Visitor;
 import com.schibsted.domain.map.model.VisitorReference;
 import com.schibsted.domain.player.Player;
+import com.schibsted.domain.shop.Shop;
 import com.schibsted.presenter.menu.DrawMapPresenter;
 import com.schibsted.view.View;
 
@@ -14,9 +15,15 @@ import java.util.Optional;
 public class DrawMapView extends View {
 
     private final DrawMapPresenter drawMapPresenter;
+
+    public void navigateToShop(Shop shop) {
+        navigateTo(new ShopView(getReader(), getWriter(), shop));
+    }
+
     private enum CollisionType {NONE, TREASURE, SHOP};
     private CollisionType currentCollision;
     private Optional<Integer> treasureId;
+    private Optional<Integer> currentShopId;
 
     public DrawMapView(Reader reader, Writer writer, DrawMapPresenter drawMapPresenter) {
         super(reader, writer);
@@ -80,10 +87,11 @@ public class DrawMapView extends View {
         if (command.equals("o") && currentCollision == CollisionType.TREASURE) {
             drawMapPresenter.onOpenTreasure(treasureId.get());
             currentCollision = CollisionType.NONE;
+        } else if (command.equals("b") && currentCollision == CollisionType.SHOP) {
+            drawMapPresenter.onBuyFromShop(currentShopId.get());
         } else {
             currentCollision = CollisionType.NONE;
             treasureId = Optional.empty();
-
             drawMapPresenter.move(command);
         }
     }
@@ -99,7 +107,8 @@ public class DrawMapView extends View {
         currentCollision = CollisionType.TREASURE;
     }
 
-    public void onShopFound(int id) {
+    public void onShopFound(int shopId) {
+        currentShopId = Optional.of(shopId);
         currentCollision = CollisionType.SHOP;
     }
 }

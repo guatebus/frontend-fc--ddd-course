@@ -3,6 +3,7 @@ package com.schibsted.presenter.menu;
 import com.schibsted.application.ApplicationService;
 import com.schibsted.domain.map.exceptions.CollisionFoundException;
 import com.schibsted.domain.map.model.Visitor;
+import com.schibsted.domain.shop.Shop;
 import com.schibsted.presenter.Presenter;
 import com.schibsted.view.menu.DrawMapView;
 
@@ -46,5 +47,10 @@ public class DrawMapPresenter extends Presenter<DrawMapView> {
 
     public void onOpenTreasure(int treasureId) {
         service.onOpenTreasure(treasureId);
+    }
+
+    public void onBuyFromShop(int shopId) {
+        Shop shop = service.onBuyFromShop(shopId);
+        getView().navigateToShop(shop);
     }
 }

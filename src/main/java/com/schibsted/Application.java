@@ -39,7 +39,7 @@ public class Application {
         MAP.addVisitor(shop1, 5, 7);
 
         final TreasureService treasureService = new TreasureService(rollDice, treasureRepository);
-        final ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP);
+        final ApplicationService applicationService = new ApplicationService(playerService, treasureService, MAP, shop1);
 
         final CreatePlayerPresenter createPlayerPresenter = new CreatePlayerPresenter(playerService);
         final CreatePlayerView createPlayerView = new CreatePlayerView(reader, writer, createPlayerPresenter, applicationService);
